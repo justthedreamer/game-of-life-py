@@ -5,7 +5,7 @@ import time
 import threading
 from abc import ABC, abstractmethod
 
-from GameComponents.Drawer import Drawer
+from GameComponents.Renderer import Renderer
 from GameComponents.Screen import Screen
 from GameComponents.Button import Button
 from GameComponents.Grid import Grid
@@ -32,7 +32,7 @@ class GameBuilder:
         self.grid = Grid(self.n_cells_x, self.n_cells_y, self.cell_size, Color.STEEL_BLUE)
         self.cellsFactory = CellsFactory()
         self.cells = self.cellsFactory.create_cells(self.n_cells_x, self.n_cells_y, self.cell_size)
-        self.drawer = Drawer()
+        self.renderer = Renderer()
         self.running = True
         self.buttons = [
             Button("Next Generation", 200, 50, 18, Color.WHITE, Color.DARK_GRAY, (self.screen.width - 210), 10,
@@ -88,12 +88,12 @@ class GameBuilder:
             self.thread.join()
 
     def update_game(self):
-        self.drawer.draw_cells(self.surface, self.grid, self.cells)
-        self.drawer.draw_grid(self.surface, self.grid)
+        self.renderer.draw_cells(self.surface, self.grid, self.cells)
+        self.renderer.draw_grid(self.surface, self.grid)
         pygame.display.flip()
 
     def build(self):
-        self.drawer.draw_buttons(self.surface, self.buttons)
+        self.renderer.draw_buttons(self.surface, self.buttons)
         pygame.display.flip()
 
     def run(self):

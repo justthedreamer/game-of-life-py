@@ -3,7 +3,7 @@ from Model.CellState import CellState
 from GameComponents.Enum.Color import Color
 
 
-class Drawer:
+class Renderer:
     @staticmethod
     def draw_grid(surface, grid):
         for y in range(grid.columns):
@@ -35,4 +35,4 @@ class Drawer:
     @staticmethod
     def draw_buttons(surface, buttons_collection):
         for button in buttons_collection:
-            Drawer.draw_button(surface, button)
+            Renderer.draw_button(surface, button)

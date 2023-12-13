@@ -5,4 +5,4 @@ class Grid:
         self.cell_size = cell_size
         self.color = color.value
         self.width = rows * cell_size
-        self.height = color * cell_size
+        self.height = columns * cell_size

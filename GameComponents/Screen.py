@@ -3,7 +3,7 @@ class Screen:
     def __init__(self, width, height, bg_color):
         self.width = width
         self.height = height
-        self.bg_color = bg_color
+        self.bg_color = bg_color.value
 
     def get_surface(self):
         surface = pygame.display.set_mode((self.width, self.height))

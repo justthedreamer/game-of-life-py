@@ -6,4 +6,6 @@ class EventType(Enum):
     START_STOP = 2
     LOAD = 3
     SAVE = 4
+    CLEAR_BOARD = 5
+    RANDOM = 6
 

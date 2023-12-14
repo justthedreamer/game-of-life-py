@@ -1,6 +1,8 @@
 from Model.ICell import ICell
 from Model.CellState import CellState
-class Cell(ICell):
+from Event.IEventComponent import IEventComponent
+from Event.EventType import EventType
+class Cell(ICell,IEventComponent):
     def __init__(self, state, size, index_x, index_y):
         self.state = state
         self.size = size
@@ -32,3 +34,10 @@ class Cell(ICell):
         for neighbor in neighbors:
             if neighbor.state == CellState.Alive: count += 1
         return count
+
+    def get_event_area(self):
+        return [[self.index_x * self.size, self.index_x * self.size + self.size], [self.index_y * self.size, self.index_y * self.size + self.size]]
+
+    def get_event_type(self):
+        return EventType.DRAW_CELL
+

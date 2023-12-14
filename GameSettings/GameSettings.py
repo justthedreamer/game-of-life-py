@@ -28,5 +28,8 @@ class GameSettings:
     def set_cell_color(self, color):
         self.cell_color = color
 
+    def set_grid_color(self, color):
+        self.grid_color = color
+
     def off_grid(self):
         self.grid_color = self.screen_bg_color

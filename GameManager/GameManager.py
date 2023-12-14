@@ -30,6 +30,7 @@ class GameManager:
         while self.game_state:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
+                    self.game_controller.real_time_run_state = False
                     self.game_state = False
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     self.event_handler.mouse_button_down_handler(
@@ -37,7 +38,3 @@ class GameManager:
 
 
 
-game_manager = GameManager()
-game_manager.game_settings.set_cell_color(Color.STEEL_BLUE)
-game_manager.game_settings.off_grid()
-game_manager.run()

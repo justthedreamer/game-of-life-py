@@ -82,7 +82,7 @@ class GameController(IGameController):
         self.game_builder.set_cells(self.game_builder.cells_factory.create_cells(self.game_settings))
         self.update_game()
 
-    def load_from_file(self, path="./saved/saved_board.txt"):
+    def load_from_file(self, path=None):
         if not self.real_time_run_state:
             try:
                 with open(path, 'r') as file:
@@ -101,14 +101,13 @@ class GameController(IGameController):
                     self.game_builder.update()
                     self.renderer.clear_screen(self.game_builder)
                     self.init_game()
-                    self.update_game()
             except Exception as e:
                 print(f"Cannot load file: {e}")
 
-    def save_to_file(self, path=None):
-        current_date = self.get_current_date_as_string()
-        path = f"./saved/board-{current_date}"
+    def save_to_file(self):
         if not self.real_time_run_state:
+            current_date = self.get_current_date_as_string()
+            path = f"./saved/board-{current_date}"
             data_to_save = self.get_json_save(self.game_settings, self.game_builder)
             try:
                 with open(path, 'w') as file:

@@ -1,8 +1,8 @@
 from Event.Interfaces.ICustomEvent import ICustomEvent
-
+from GameController.Interfaces import IGameController
 
 class CustomEvent(ICustomEvent):
-    def __init__(self, event, event_components, controller):
+    def __init__(self, event, event_components : ICustomEvent, controller : IGameController):
         self.event = event
         self.event_components = event_components
         self.controller = controller

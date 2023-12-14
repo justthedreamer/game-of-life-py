@@ -1,9 +1,9 @@
 from Event.EventType import EventType
 from Event.CustomEvent import CustomEvent
-
+from Event.Interfaces.ICustomEvent import ICustomEvent
 class EventHandler:
     @staticmethod
-    def mouse_button_down_handler(custom_event):
+    def mouse_button_down_handler(custom_event : ICustomEvent):
         event_type = custom_event.get_event_type()
         controller = custom_event.controller
         if event_type == EventType.NEXT_GENERATION:

@@ -14,5 +14,5 @@ class IGameController(ABC):
         pass
 
     @abstractmethod
-    def save_to_file(self, path):
+    def save_to_file(self):
         pass

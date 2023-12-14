@@ -9,6 +9,7 @@ from GameSettings.GameSettings import GameSettings
 from GameBuilder.GameBuilder import GameBuilder
 from Model.CellState import CellState
 from Model.Cell import *
+from datetime import datetime
 
 
 class GameController():
@@ -27,7 +28,7 @@ class GameController():
 
         self.renderer.draw_buttons(self.game_builder)
         self.renderer.draw_cells(self.game_settings, self.game_builder)
-        self.renderer.draw_grid(self.game_builder)
+        self.renderer.draw_grid(self.game_settings,self.game_builder)
 
         self.update_display()
 
@@ -71,7 +72,7 @@ class GameController():
     def update_game(self):
         self.game_builder.update()
         self.renderer.draw_cells(self.game_settings, self.game_builder)
-        self.renderer.draw_grid(self.game_builder)
+        self.renderer.draw_grid(self.game_settings,self.game_builder)
         self.update_display()
 
     def toggle_cell_event(self, cell):
@@ -87,7 +88,7 @@ class GameController():
         self.game_builder.set_cells(self.game_builder.cells_factory.create_cells(self.game_settings))
         self.update_game()
 
-    def load_from_file(self, path="..\saved\saved_board.txt"):
+    def load_from_file(self, path="./saved/saved_board.txt"):
         if not self.real_time_run_state:
             try:
                 with open(path, 'r') as file:
@@ -99,12 +100,18 @@ class GameController():
                     print(f"Loaded file from {path}")
                     converted_cells = self.game_builder.cells_factory.create_custom_board(n_cells_x, n_cells_y,
                                                                                           cell_size, cells)
+                    self.clear_board()
                     self.game_builder.set_cells(converted_cells)
+                    self.game_settings.n_cells_x = n_cells_x
+                    self.game_settings.n_cells_y = n_cells_y
+                    self.game_settings.cell_size = cell_size
                     self.update_game()
             except Exception as e:
                 print(f"Cannot load file: {e}")
 
-    def save_to_file(self, path="..\saved\saved_board.txt"):
+    def save_to_file(self):
+        current_date = self.get_current_date_as_string()
+        path = f"./saved/board-{current_date}"
         if not self.real_time_run_state:
             data_to_save = self.get_json_save(self.game_settings, self.game_builder)
             try:
@@ -143,3 +150,8 @@ class GameController():
     @staticmethod
     def update_display():
         pygame.display.flip()
+    @staticmethod
+    def get_current_date_as_string():
+        current_date = datetime.now()
+        return current_date.strftime("%d-%m-%Y--%H-%M-%S")
+

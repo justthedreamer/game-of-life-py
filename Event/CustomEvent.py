@@ -1,5 +1,4 @@
-from Event.EventType import EventType
-from Event.ICustomEvent import ICustomEvent
+from Event.Interfaces.ICustomEvent import ICustomEvent
 
 
 class CustomEvent(ICustomEvent):

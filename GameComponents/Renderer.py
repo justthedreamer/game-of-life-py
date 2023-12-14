@@ -49,3 +49,8 @@ class Renderer():
     @staticmethod
     def draw_message(game_builder, text, color):
         pass
+    @staticmethod
+    def clear_screen(game_builder):
+        surface = game_builder.surface
+        color = game_builder.game_settings.screen_bg_color.value
+        surface.fill(color)

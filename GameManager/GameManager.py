@@ -17,7 +17,7 @@ class GameManager:
     def __init__(self):
         self.game_settings = GameSettings()
         self.game_builder = GameBuilder(self.game_settings)
-        self.game_controller = GameController(self.game_settings, self.game_builder)
+        self.game_controller = GameController(self.game_builder)
         self.event_handler = EventHandler()
         self.game_state = True
 

@@ -1,6 +1,6 @@
-from GameComponents.ICell import ICell
+from GameComponents.Interfaces.ICell import ICell
 from GameComponents.Enum.CellState import CellState
-from Event.IEventComponent import IEventComponent
+from Event.Interfaces.IEventComponent import IEventComponent
 from Event.EventType import EventType
 class Cell(ICell,IEventComponent):
     def __init__(self, state, size, index_x, index_y):

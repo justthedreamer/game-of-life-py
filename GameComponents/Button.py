@@ -1,4 +1,4 @@
-from Event.IEventComponent import IEventComponent
+from Event.Interfaces.IEventComponent import IEventComponent
 class Button(IEventComponent):
     def __init__(self, text, width, height, font_size, font_color, bg_color, position_x, position_y, event_type):
         self.bg_color = bg_color.value

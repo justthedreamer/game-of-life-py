@@ -1,5 +1,5 @@
 import numpy as np
-from GameComponents.ICellsFactory import ICellsFactory
+from GameComponents.Interfaces.ICellsFactory import ICellsFactory
 from GameComponents.Cell import Cell
 
 

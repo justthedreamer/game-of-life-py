@@ -8,7 +8,7 @@ from GameComponents.CellsFactory import CellsFactory
 
 class GameBuilder:
     def __init__(self, game_settings):
-
+        self.game_settings = game_settings
         self.screen = Screen(game_settings.screen_width, game_settings.screen_height, game_settings.screen_bg_color)
         self.surface = self.screen.get_surface()
         self.cells_factory = CellsFactory()
@@ -26,8 +26,14 @@ class GameBuilder:
                    EventType.RANDOM)
         ]
         self.event_components = [self.buttons, self.cells]
-        self.grid = Grid(game_settings.n_cells_x, game_settings.n_cells_y, game_settings.cell_size,
-                         game_settings.grid_color)
+        self.grid = Grid(game_settings)
+
+    def update(self):
+        self.update_grid()
+        self.update_event_componentes()
+
+    def update_grid(self):
+        self.grid = Grid(self.game_settings)
 
     def update_event_componentes(self):
         self.event_components = [self.buttons, self.cells]
@@ -35,4 +41,3 @@ class GameBuilder:
     def set_cells(self, cells):
         self.cells = cells
         self.update_event_componentes()
-

@@ -11,9 +11,9 @@ from GameController.Interfaces.IGameController import IGameController
 
 
 class GameController(IGameController):
-    def __init__(self, game_settings, game_builder):
+    def __init__(self, game_builder):
         self.renderer = Renderer()
-        self.game_settings = game_settings
+        self.game_settings = game_builder.game_settings
         self.game_builder = game_builder
 
         self.thread = None
@@ -21,11 +21,9 @@ class GameController(IGameController):
 
     def init_game(self):
         pygame.init()
-
         self.renderer.draw_buttons(self.game_builder)
         self.renderer.draw_cells(self.game_settings, self.game_builder)
-        self.renderer.draw_grid(self.game_settings,self.game_builder)
-
+        self.renderer.draw_grid(self.game_settings, self.game_builder)
         self.update_display()
 
     def __real_time_run(self, ticks):
@@ -66,9 +64,9 @@ class GameController(IGameController):
             self.thread.join()
 
     def update_game(self):
-        self.game_builder.update_event_componentes()
+        self.game_builder.update()
         self.renderer.draw_cells(self.game_settings, self.game_builder)
-        self.renderer.draw_grid(self.game_settings,self.game_builder)
+        self.renderer.draw_grid(self.game_settings, self.game_builder)
         self.update_display()
 
     def toggle_cell_event(self, cell):
@@ -96,16 +94,18 @@ class GameController(IGameController):
                     print(f"Loaded file from {path}")
                     converted_cells = self.game_builder.cells_factory.create_custom_board(n_cells_x, n_cells_y,
                                                                                           cell_size, cells)
-                    self.clear_board()
                     self.game_builder.set_cells(converted_cells)
                     self.game_settings.n_cells_x = n_cells_x
                     self.game_settings.n_cells_y = n_cells_y
                     self.game_settings.cell_size = cell_size
+                    self.game_builder.update()
+                    self.renderer.clear_screen(self.game_builder)
+                    self.init_game()
                     self.update_game()
             except Exception as e:
                 print(f"Cannot load file: {e}")
 
-    def save_to_file(self):
+    def save_to_file(self, path=None):
         current_date = self.get_current_date_as_string()
         path = f"./saved/board-{current_date}"
         if not self.real_time_run_state:
@@ -146,8 +146,8 @@ class GameController(IGameController):
     @staticmethod
     def update_display():
         pygame.display.flip()
+
     @staticmethod
     def get_current_date_as_string():
         current_date = datetime.now()
         return current_date.strftime("%d-%m-%Y--%H-%M-%S")
-

@@ -8,6 +8,7 @@ from GameComponents.CellsFactory import CellsFactory
 
 class GameBuilder:
     def __init__(self, game_settings):
+
         self.screen = Screen(game_settings.screen_width, game_settings.screen_height, game_settings.screen_bg_color)
         self.surface = self.screen.get_surface()
         self.cells_factory = CellsFactory()

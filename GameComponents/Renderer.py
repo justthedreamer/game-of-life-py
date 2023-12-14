@@ -1,6 +1,5 @@
 import pygame
-from Model.CellState import CellState
-from GameComponents.Enum.Color import Color
+from GameComponents.Enum.CellState import CellState
 
 
 class Renderer:

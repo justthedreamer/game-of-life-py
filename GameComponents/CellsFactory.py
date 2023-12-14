@@ -1,6 +1,6 @@
 import numpy as np
-from Model.ICellsFactory import ICellsFactory
-from Model.Cell import Cell
+from GameComponents.ICellsFactory import ICellsFactory
+from GameComponents.Cell import Cell
 
 
 class CellsFactory(ICellsFactory):

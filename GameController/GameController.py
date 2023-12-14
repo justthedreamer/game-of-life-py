@@ -5,10 +5,7 @@ import json
 import numpy as np
 
 from GameComponents.Renderer import Renderer
-from GameSettings.GameSettings import GameSettings
-from GameBuilder.GameBuilder import GameBuilder
-from Model.CellState import CellState
-from Model.Cell import *
+from GameComponents.Cell import *
 from datetime import datetime
 
 

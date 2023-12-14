@@ -1,5 +1,5 @@
-from Model.ICell import ICell
-from Model.CellState import CellState
+from GameComponents.ICell import ICell
+from GameComponents.Enum.CellState import CellState
 from Event.IEventComponent import IEventComponent
 from Event.EventType import EventType
 class Cell(ICell,IEventComponent):

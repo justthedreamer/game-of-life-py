@@ -1,6 +1,4 @@
 from abc import ABC, abstractmethod
-
-
 class IGameController(ABC):
 
     @abstractmethod
@@ -12,7 +10,7 @@ class IGameController(ABC):
         pass
 
     @abstractmethod
-    def load_file(self, path):
+    def load_from_file(self, path):
         pass
 
     @abstractmethod

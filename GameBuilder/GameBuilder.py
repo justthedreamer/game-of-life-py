@@ -29,10 +29,10 @@ class GameBuilder:
         self.grid = Grid(game_settings.n_cells_x, game_settings.n_cells_y, game_settings.cell_size,
                          game_settings.grid_color)
 
-    def update(self):
+    def update_event_componentes(self):
         self.event_components = [self.buttons, self.cells]
 
     def set_cells(self, cells):
         self.cells = cells
-        self.update()
+        self.update_event_componentes()
 

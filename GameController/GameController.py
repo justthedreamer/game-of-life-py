@@ -7,17 +7,16 @@ import numpy as np
 from GameComponents.Renderer import Renderer
 from GameComponents.Cell import *
 from datetime import datetime
+from GameController.Interfaces.IGameController import IGameController
 
 
-class GameController():
-
+class GameController(IGameController):
     def __init__(self, game_settings, game_builder):
         self.renderer = Renderer()
         self.game_settings = game_settings
         self.game_builder = game_builder
 
         self.thread = None
-        self.tick_rate = self.game_settings.tick_rate
         self.real_time_run_state = False
 
     def init_game(self):
@@ -67,7 +66,7 @@ class GameController():
             self.thread.join()
 
     def update_game(self):
-        self.game_builder.update()
+        self.game_builder.update_event_componentes()
         self.renderer.draw_cells(self.game_settings, self.game_builder)
         self.renderer.draw_grid(self.game_settings,self.game_builder)
         self.update_display()

@@ -7,7 +7,6 @@ from abc import ABC, abstractmethod
 
 from GameSettings.GameSettings import GameSettings
 from GameBuilder.GameBuilder import GameBuilder
-from GameController.IGameController import IGameController
 from GameController.GameController import GameController
 from Event.EventHandler import EventHandler
 from GameComponents.CellsFactory import CellsFactory

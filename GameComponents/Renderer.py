@@ -1,11 +1,10 @@
 import pygame
 from GameComponents.Enum.CellState import CellState
 
-
-class Renderer:
+class Renderer():
 
     @staticmethod
-    def draw_grid(game_settings,game_builder):
+    def draw_grid(game_settings, game_builder):
         grid = game_builder.grid
         surface = game_builder.surface
         grid_color = game_settings.grid_color
@@ -15,7 +14,7 @@ class Renderer:
                 pygame.draw.rect(surface, grid_color.value, cell, 1)
 
     @staticmethod
-    def draw_cells(game_settings,game_builder):
+    def draw_cells(game_settings, game_builder):
         cells = game_builder.cells
         surface = game_builder.surface
 
@@ -46,11 +45,7 @@ class Renderer:
         surface = game_builder.surface
         for button in buttons_collection:
             Renderer.draw_button(surface, button)
+
     @staticmethod
-    def draw_message(game_builder,text,color):
+    def draw_message(game_builder, text, color):
         pass
-
-
-
-
-
